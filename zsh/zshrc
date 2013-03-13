@@ -1,0 +1,122 @@
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="robbyrussell"
+
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Set to this to use case-sensitive completion
+# CASE_SENSITIVE="true"
+
+# Comment this out to disable bi-weekly auto-update checks
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
+
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+# COMPLETION_WAITING_DOTS="true"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# Customize to your needs...
+#
+#
+
+# ALIAS
+alias ls='ls --color=auto'
+alias ll='ls -l --color=auto'
+alias la='ls -A --color=auto'
+alias l='ls -CF --color=auto'
+alias diff='colordiff'
+
+HOSTNAME=$(hostname)
+if [ $HOSTNAME = "andre-ribes-ubuntu" ]; then
+    echo "Configuration for hostname andre-ribes-ubuntu"
+
+    # PATH
+    export PATH=$HOME/.local/bin:$PATH
+
+    # Ninja
+    export PATH=$PATH:/home/andre/Dev/Install/ninja/bin
+
+    # Libboost
+    export BOOST_ROOT=/home/andre/Dev/Install/boost_1_53_0
+
+    # inisafe
+    # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/andre/Dev/Install/inisafelib
+
+    # Alias
+    # alias ncmake="/opt/cmake-ninja/bin/cmake -G Ninja"
+    alias ncmake="/home/andre/Dev/Install/cmake-2.8.10.2/bin/cmake -G Ninja"
+    alias nn="ninja -j20"
+
+    # GIT
+    export PATH=/home/andre/Dev/Install/git-1.8.1.5/bin/:$PATH
+    export PYTHONPATH=/home/andre/Dev/Install/git-1.8.1.5/lib
+
+    # LIBGIT2
+    export LD_LIBRARY_PATH=/home/andre/Dev/Install/libgit2/lib/
+
+    # Distcc
+    export CC="distcc gcc-4.7.2"
+    export CXX="distcc g++-4.7.2"
+    export CPP="distcc g++-4.7.2"
+    export DISTCC_SKIP_LOCAL_RETRY=1
+    alias make="make -j`distcc -j`"
+
+    # unlimited core file
+    ulimit -c unlimited
+    alias ssh-au='ssh andre.ribes@bjdev01'
+    alias ssh-ld='ssh andre.ribes@lcdev08'
+    alias ssh-pp='ssh andre.ribes@pptrd05'
+    alias ssh-us='ssh andre.ribes@cwdev01'
+
+    # Git And Ninja
+    function get_git_branch_for_tibra_repo {
+        git --git-dir ~/dev/repo/tibra/.git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+    }
+
+    function ninja {
+        NINJA_BINARY=`which ninja`
+        CURR_GIT_BRANCH=`get_git_branch_for_tibra_repo`
+        if [ ! -f .ninja_git_build_branch ]; then
+            echo $CURR_GIT_BRANCH > .ninja_git_build_branch
+        fi
+
+        #read the first line
+        read -r NINJA_GIT_BUILD_BRANCH < .ninja_git_build_branch
+
+        if [ "$NINJA_GIT_BUILD_BRANCH" == "$CURR_GIT_BRANCH" ]; then
+            $NINJA_BINARY $@
+        else
+            echo "##############################################################################################"
+            echo " BUILDING BRANCH DOES NOT MATCH CURRENT GIT BRANCH"
+            echo "    - BUILDING BRANCH: $NINJA_GIT_BUILD_BRANCH"
+            echo "    - CURRENT GIT BRANCH: $CURR_GIT_BRANCH"
+            echo "##############################################################################################"
+        fi
+    }
+
+    # ZSH Specific configuration
+    . ~/.vim/bundle/powerline/powerline/bindings/zsh/powerline.zsh
+else
+    echo "Default configuration"
+fi
