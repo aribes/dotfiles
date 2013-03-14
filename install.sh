@@ -1,5 +1,14 @@
 #!/bin/sh
 
+# Get Script path
+SCRIPT=$(readlink -f $0)
+SCRIPTPATH=$(dirname $SCRIPT)
+
+echo "Installing the dotfiles directory"
+if [ -e $HOME/.dotfilesdir ];  then
+    rm $HOME/.dotfilesdir
+fi
+ln -s $SCRIPTPATH $HOME/.dotfilesdir
 
 #
 ###########
@@ -15,10 +24,6 @@ if [ -e $HOME/.zshrc ];  then
         rm $HOME/.zshrc
     fi
 fi
-
-# Get Script path
-SCRIPT=$(readlink -f $0)
-SCRIPTPATH=$(dirname $SCRIPT)
 
 ln -s $SCRIPTPATH/zsh/zshrc $HOME/.zshrc
 #

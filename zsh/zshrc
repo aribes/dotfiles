@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="gnzh"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -15,7 +15,7 @@ ZSH_THEME="robbyrussell"
 # CASE_SENSITIVE="true"
 
 # Comment this out to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
 # export UPDATE_ZSH_DAYS=13
@@ -27,18 +27,25 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git history-substring-search)
 
+# Beautiful syntax highlighting
+# Has to be loaded before oh-my-zsh for highlight history search
+source $HOME/.dotfilesdir/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
+
+# Source oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-#
-#
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
 
 # ALIAS
 alias ls='ls --color=auto'
@@ -46,6 +53,26 @@ alias ll='ls -l --color=auto'
 alias la='ls -A --color=auto'
 alias l='ls -CF --color=auto'
 alias diff='colordiff'
+
+# enable auto correction
+setopt correct
+
+# Completion verbose please
+zstyle ':completion:*' verbose true
+
+# Completion for kill
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+# Speed up completion via cache
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# Auto complete to previous dirs
+# cd -<TAB>
+setopt autopushd               # automatically append dirs to the push/pop list
+setopt pushdignoredups         # and don't duplicate them
+
 
 HOSTNAME=$(hostname)
 if [ $HOSTNAME = "andre-ribes-ubuntu" ]; then
@@ -115,7 +142,7 @@ if [ $HOSTNAME = "andre-ribes-ubuntu" ]; then
         fi
     }
 
-    # ZSH Specific configuration
+    # Powerline for Zsh
     . ~/.vim/bundle/powerline/powerline/bindings/zsh/powerline.zsh
 else
     echo "Default configuration"
