@@ -96,8 +96,9 @@ if [ $HOSTNAME = "andre-ribes-ubuntu" ]; then
     alias nn="ninja -j20"
 
     # GIT
-    export PATH=/home/andre/Dev/Install/git-1.8.1.5/bin/:$PATH
-    export PYTHONPATH=/home/andre/Dev/Install/git-1.8.1.5/lib
+    # export PATH=/home/andre/Dev/Install/git-1.8.1.5/bin/:$PATH
+    # export PYTHONPATH=/home/andre/Dev/Install/git-1.8.1.5/lib
+    
 
     # LIBGIT2
     export LD_LIBRARY_PATH=/home/andre/Dev/Install/libgit2/lib/
@@ -142,6 +143,8 @@ if [ $HOSTNAME = "andre-ribes-ubuntu" ]; then
         fi
     }
 
+    # Powerline
+    # export PATH=~/.vim/bundle/powerline/build/scripts-2.7:$PATH
     # Powerline for Zsh
     . ~/.vim/bundle/powerline/powerline/bindings/zsh/powerline.zsh
 else
