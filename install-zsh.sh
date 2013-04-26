@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Use ZSH
+chsh -s $(which zsh)
+
 # Get Script path
 SCRIPT=$(readlink -f $0)
 SCRIPTPATH=$(dirname $SCRIPT)
