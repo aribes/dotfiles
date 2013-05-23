@@ -73,7 +73,6 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 setopt autopushd               # automatically append dirs to the push/pop list
 setopt pushdignoredups         # and don't duplicate them
 
-
 HOSTNAME=$(hostname)
 if [ $HOSTNAME = "andre-ribes-ubuntu" ]; then
     echo "Configuration for hostname andre-ribes-ubuntu"
