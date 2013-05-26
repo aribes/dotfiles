@@ -7,3 +7,9 @@
 [submodule "awesome/awesomegit"]
 	path = awesome/awesomegit
 	url = git://git.naquadah.org/awesome.git
+[submodule "awesome/repo"]
+	path = awesome/repo
+	url = git://git.naquadah.org/awesome.git
+[submodule "vim"]
+	path = vim
+	url = git@github.com:aribes/vim.git

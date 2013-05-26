@@ -1,9 +1,5 @@
 #!/bin/sh
 
-echo "Installing packages"
-
-echo "Compiling Awesome"
-
 echo "Creating .xinitrc/.xsession"
 
 if [ -e $HOME/.xinitrc ];  then
@@ -32,11 +28,10 @@ fi
 
 touch $HOME/.xinitrc
 echo "#!/bin/sh" >> $HOME/.xinitrc
-echo exec /usr/local/bin/awesome >> $HOME/.xinitrc
+echo exec $HOME/.awesome-install >> $HOME/.xinitrc
 ln -s $HOME/.xinitrc $HOME/.xsession
 
 echo "Installing Awesome configuration file"
-
 if [ -e $HOME/.config/awesome/rc.lua ];  then
     if [ -f $HOME/.config/awesome/rc.lua ];  then
         echo "Saving old rc.lua file"
