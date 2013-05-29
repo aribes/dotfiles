@@ -13,3 +13,9 @@
 [submodule "vim"]
 	path = vim
 	url = git@github.com:aribes/vim.git
+[submodule "powerline/libgit2"]
+	path = powerline/libgit2
+	url = git://github.com/libgit2/libgit2.git
+[submodule "powerline/pygit2"]
+	path = powerline/pygit2
+	url = git://github.com/libgit2/pygit2.git

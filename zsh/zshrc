@@ -149,3 +149,7 @@ if [ $HOSTNAME = "andre-ribes-ubuntu" ]; then
 else
     echo "Default configuration"
 fi
+
+# Configuration for dotfiles
+export PATH=/home/andre/.install/bin:$PATH
+export LD_LIBRARY_PATH=/home/andre/.install/lib:$LD_LIBRARY_PATH
