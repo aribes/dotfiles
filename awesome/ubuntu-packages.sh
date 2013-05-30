@@ -8,3 +8,4 @@ sudo aptitude install libx11-dev libxinerama-dev libxrandr-dev libpango1.0-dev l
 sudo aptitude install libxcb-util0-dev libxcb-keysyms1-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-xtest0-dev libxdg-basedir-dev
 sudo aptitude install libstartup-notification0-dev
 sudo aptitude install asciidoc
+sudo aptitude install libdbus-1-dev

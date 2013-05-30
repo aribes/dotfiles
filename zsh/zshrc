@@ -142,13 +142,14 @@ if [ $HOSTNAME = "andre-ribes-ubuntu" ]; then
         fi
     }
 
-    # Powerline
-    # export PATH=~/.vim/bundle/powerline/build/scripts-2.7:$PATH
-    # Powerline for Zsh
-    . ~/.vim/bundle/powerline/powerline/bindings/zsh/powerline.zsh
 else
     echo "Default configuration"
 fi
+
+# Powerline
+# export PATH=~/.vim/bundle/powerline/build/scripts-2.7:$PATH
+# Powerline for Zsh
+. ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # Configuration for dotfiles
 export PATH=/home/andre/.install/bin:$PATH

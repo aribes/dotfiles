@@ -20,6 +20,6 @@ cd $SCRIPTPATH
 rm -rf repo-build
 mkdir repo-build
 cd repo-build
-cmake -G Ninja ../repo -DCMAKE_INSTALL_PREFIX=$HOME/.awesome-install
+cmake -G Ninja ../repo -DCMAKE_INSTALL_PREFIX=$HOME/.install
 cninja
 cninja install
