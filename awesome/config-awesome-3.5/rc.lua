@@ -11,9 +11,13 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
--- POWERLINE CONFIGURATION
+-- POWERLINE STYLE CONFIGURATION
+
+-- Adding the real powerline for getting segments
 package.path = package.path .. ';/home/andre/.local/lib/python2.7/site-packages/powerline/bindings/awesome/?.lua'
 require('powerline')
+
+-- Adding a theme for powerline
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -42,10 +46,14 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/andre/.install/share/awesome/themes/default/theme.lua")
+-- Also defines the theme variable
+-- beautiful.init("/home/andre/.install/share/awesome/themes/default/theme.lua")
+config_dir = ("/home/andre/.config/awesome")
+themes_dir = (config_dir .. "/powerarrow-dark/themes")
+beautiful.init(themes_dir .. "/powerarrow-dark/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
+terminal = "roxterm"
 editor = "gvim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -87,14 +95,14 @@ tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
     if s == 1 then
-        names  = { "windows", "Launch", "Src", "Build", 5, 6, 7, 8, 9 }
-        tags[s] = awful.tag(names, s, layouts[1])
-    elseif s == 2 then
-        names  = { "Internet", 2, 3, 4, 5, 6, 7, 8, 9 }
+        names  = { "Windows", "Internet", '➌', '➍', '➎', '➏', '➐', '➑', '➒' }
         tags[s] = awful.tag(names, s, layouts[1])
     else
-        tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
+        tags[s] = awful.tag({ '➊', '➋', '➌', '➍', '➎', '➏', '➐', '➑', '➒' }, s, layouts[1])
     end
+
+    theme.font = "Ubuntu Mono derivative Powerline Bold 10"
+    theme.taglist_font = "Ubuntu Mono derivative Powerline Bold 10"
 end
 
 -- {{{ Menu
@@ -351,6 +359,11 @@ clientbuttons = awful.util.table.join(
     awful.button({ modkey }, 1, awful.mouse.client.move),
     awful.button({ modkey }, 3, awful.mouse.client.resize))
 
+globalkeys = awful.util.table.join(globalkeys,
+    awful.key({"Control", "Mod1"}, "l", function () awful.util.spawn("gnome-screensaver-command -l") end,
+               "Lock screen")
+)
+
 -- Set keys
 root.keys(globalkeys)
 -- }}}
@@ -370,13 +383,13 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
     { rule = { class = "Pidgin" },
        properties = { tag = tags[1][9] } },
     { rule = { class = "VirtualBox" },
        properties = { tag = tags[1][1] } },
+    -- Set Firefox to always map on tags number 2 of screen 1.
+    { rule = { class = "Firefox" },
+       properties = { tag = tags[1][2] } },
 }
 -- }}}
 
@@ -472,7 +485,7 @@ end
 run_once("gnome-keyring-daemon", "--start --components=pkcs11", "/usr/bin/gnome-keyring-daemon", 1)
 run_once("/home/andre/dotfiles/scripts/compose.sh", nil, nil, 1)
 run_once("nitrogen", "--restore", nil, 1)
-run_once("firefox", nil, "/usr/lib/firefox/firefox", 2)
+run_once("firefox", nil, "/usr/lib/firefox/firefox", 1)
 run_once("vboxmanage", "startvm 5d302ce7-84a9-4e49-91f8-8b75bee3b235", "/usr/lib/virtualbox/VirtualBox", 1)
 run_once("pidgin", nil, nil, 1)
 

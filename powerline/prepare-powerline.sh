@@ -36,4 +36,4 @@ echo "Installing psutil"
 pip install psutil --upgrade --user
 
 echo "Installing powerline"
-pip install --user git+git://github.com/Lokaltog/powerline
+pip install --user --upgrade $SCRIPTPATH/powerline

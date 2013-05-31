@@ -16,3 +16,12 @@
 [submodule "powerline/pygit2"]
 	path = powerline/pygit2
 	url = git://github.com/libgit2/pygit2.git
+[submodule "powerline/powerline-fonts"]
+	path = powerline/powerline-fonts
+	url = git://github.com/Lokaltog/powerline-fonts.git
+[submodule "powerline/powerline"]
+	path = powerline/powerline
+	url = git://github.com/Lokaltog/powerline
+[submodule "awesome/powerarrow-dark"]
+	path = awesome/powerarrow-dark
+	url = git://github.com/romockee/powerarrow-dark.git
