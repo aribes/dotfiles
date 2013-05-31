@@ -360,8 +360,7 @@ clientbuttons = awful.util.table.join(
     awful.button({ modkey }, 3, awful.mouse.client.resize))
 
 globalkeys = awful.util.table.join(globalkeys,
-    awful.key({"Control", "Mod1"}, "l", function () awful.util.spawn("gnome-screensaver-command -l") end,
-               "Lock screen")
+    awful.key({"Control", "Mod1"}, "l", function () awful.util.spawn("gnome-screensaver-command -l") end)
 )
 
 -- Set keys
