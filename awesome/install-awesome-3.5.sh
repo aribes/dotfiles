@@ -38,3 +38,7 @@ ln -s $HOME/.xinitrc $HOME/.xsession
 echo "Installing Awesome configuration file"
 rm -rf $HOME/.config/awesome
 ln -s $SCRIPTPATH/config-awesome-3.5/ $HOME/.config/awesome
+
+echo Installing luafilesystem
+cd $SCRIPTPATH
+luarocks install luafilesystem --local

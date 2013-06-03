@@ -25,3 +25,9 @@
 [submodule "awesome/powerarrow-dark"]
 	path = awesome/powerarrow-dark
 	url = git://github.com/romockee/powerarrow-dark.git
+[submodule "awesome/themes"]
+	path = awesome/themes
+	url = git@github.com:aribes/awesome-themes.git
+[submodule "awesome/luafilesystem"]
+	path = awesome/luafilesystem
+	url = git://github.com/keplerproject/luafilesystem.git

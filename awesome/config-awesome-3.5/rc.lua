@@ -49,7 +49,7 @@ end
 -- Also defines the theme variable
 -- beautiful.init("/home/andre/.install/share/awesome/themes/default/theme.lua")
 config_dir = ("/home/andre/.config/awesome")
-themes_dir = (config_dir .. "/powerarrow-dark/themes")
+themes_dir = (config_dir .. "/themes/themes")
 beautiful.init(themes_dir .. "/powerarrow-dark/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
@@ -209,6 +209,8 @@ for s = 1, screen.count() do
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     -- Disable since we are using powerline
     -- right_layout:add(mytextclock)
+    -- configure powerline_widget
+    powerline_widget:set_font("Ubuntu Mono derivative Powerline Bold 10")
     right_layout:add(powerline_widget)
     right_layout:add(mylayoutbox[s])
 

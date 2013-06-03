@@ -3,7 +3,7 @@
 	"segments": {
 		"right": [
 			{
-				"name": "date"
+				"name": "system_load"
 			},
 			{
 				"name": "date",
@@ -12,6 +12,9 @@
 					"istime": true
 				},
 				"before": "⌚ "
+			},
+			{
+				"name": "date"
 			}
 		]
 	}
