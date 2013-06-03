@@ -73,6 +73,12 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 setopt autopushd               # automatically append dirs to the push/pop list
 setopt pushdignoredups         # and don't duplicate them
 
+# Ninja completion
+_ninja() {
+  reply=(`(ninja -t targets all 2&>/dev/null) | awk -F: '{print $1}'`)
+}
+compctl -K _ninja ninja
+
 HOSTNAME=$(hostname)
 if [ $HOSTNAME = "andre-ribes-ubuntu" ]; then
     echo "Configuration for hostname andre-ribes-ubuntu"
@@ -85,6 +91,7 @@ if [ $HOSTNAME = "andre-ribes-ubuntu" ]; then
 
     # Libboost
     export BOOST_ROOT=/home/andre/Dev/Install/boost_1_53_0
+    export LD_LIBRARY_PATH=$BOOST_ROOT/stage/lib:$LD_LIBRARY_PATH
 
     # inisafe
     # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/andre/Dev/Install/inisafelib
@@ -94,13 +101,11 @@ if [ $HOSTNAME = "andre-ribes-ubuntu" ]; then
     alias ncmake="/home/andre/Dev/Install/cmake-2.8.10.2/bin/cmake -G Ninja"
     alias nn="ninja -j20"
 
-    # GIT
-    # export PATH=/home/andre/Dev/Install/git-1.8.1.5/bin/:$PATH
-    # export PYTHONPATH=/home/andre/Dev/Install/git-1.8.1.5/lib
-    
-
     # LIBGIT2
-    export LD_LIBRARY_PATH=/home/andre/Dev/Install/libgit2/lib/
+    export LD_LIBRARY_PATH=/home/andre/Dev/Install/libgit2/lib/:$LD_LIBRARY_PATH
+
+    # VPM
+    export PATH=/home/andre/Dev/Packages/vpm/1.01.00-build:$PATH
 
     # Distcc
     export CC="distcc gcc-4.7.2"
