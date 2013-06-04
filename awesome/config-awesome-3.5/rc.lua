@@ -10,6 +10,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+local blingbling = require("blingbling")
 
 -- POWERLINE STYLE CONFIGURATION
 
@@ -209,8 +210,17 @@ for s = 1, screen.count() do
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     -- Disable since we are using powerline
     -- right_layout:add(mytextclock)
+
     -- configure powerline_widget
     powerline_widget:set_font("Ubuntu Mono derivative Powerline Bold 10")
+    blingbling.popups.htop(powerline_widget,
+    {
+        title_color = beautiful.notify_font_color_1,
+        user_color  = beautiful.notify_font_color_2,
+        root_color  = beautiful.notify_font_color_3,
+        terminal    = "terminal --geometry=130x56-10+26"
+    })
+
     right_layout:add(powerline_widget)
     right_layout:add(mylayoutbox[s])
 

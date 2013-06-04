@@ -31,3 +31,6 @@
 [submodule "awesome/luafilesystem"]
 	path = awesome/luafilesystem
 	url = git://github.com/keplerproject/luafilesystem.git
+[submodule "awesome/blingbling"]
+	path = awesome/blingbling
+	url = git://github.com/cedlemo/blingbling.git
