@@ -73,6 +73,9 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 setopt autopushd               # automatically append dirs to the push/pop list
 setopt pushdignoredups         # and don't duplicate them
 
+# history
+setopt inc_append_history
+
 # Ninja completion
 _ninja() {
   reply=(`(ninja -t targets all 2&>/dev/null) | awk -F: '{print $1}'`)
@@ -107,12 +110,19 @@ if [ $HOSTNAME = "andre-ribes-ubuntu" ]; then
     # VPM
     export PATH=/home/andre/Dev/Packages/vpm/1.01.00-build:$PATH
 
+    # SPECIAL BINS
+    export PATH=/home/andre/bin:$PATH
+
     # Distcc
-    export CC="distcc gcc-4.7.2"
-    export CXX="distcc g++-4.7.2"
-    export CPP="distcc g++-4.7.2"
-    export DISTCC_SKIP_LOCAL_RETRY=1
-    alias make="make -j`distcc -j`"
+    # export CC="distcc gcc-4.7"
+    # export CXX="distcc g++-4.7"
+    # export CPP="distcc g++-4.7"
+    # export DISTCC_SKIP_LOCAL_RETRY=1
+    # alias make="make -j`distcc -j`"
+
+    export CC="distcc gcc-4.8"
+    export CXX="distcc g++-4.8"
+    export CPP="distcc g++-4.8"
 
     # unlimited core file
     ulimit -c unlimited
