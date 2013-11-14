@@ -48,6 +48,7 @@ flags = [
 '-I', '/home/andre/Dev/Packages/tibra.meta/1.00.00/include',
 '-I', '/home/andre/Dev/Packages/tibra.conversion/1.00.04/include',
 '-I', '/home/andre/Dev/Packages/orc/2012a',
+'-I', '/home/andre/Dev/Packages/tibra.container/1.00.01/include',
 
 # Ignore all warnings
 '-w',
