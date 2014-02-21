@@ -113,16 +113,9 @@ if [ $HOSTNAME = "andre-ribes-ubuntu" ]; then
     # SPECIAL BINS
     export PATH=/home/andre/bin:$PATH
 
-    # Distcc
-    # export CC="distcc gcc-4.7"
-    # export CXX="distcc g++-4.7"
-    # export CPP="distcc g++-4.7"
-    # export DISTCC_SKIP_LOCAL_RETRY=1
-    # alias make="make -j`distcc -j`"
-
-    export CC="distcc gcc-4.8"
-    export CXX="distcc g++-4.8"
-    export CPP="distcc g++-4.8"
+    # PROTOBUF
+    export PATH=/home/andre/Dev/Install/protobuf-2.5.0/bin:$PATH
+    export LD_LIBRARY_PATH=/home/andre/Dev/Install/protobuf-2.5.0/lib:$LD_LIBRARY_PATH
 
     # unlimited core file
     ulimit -c unlimited
@@ -130,6 +123,7 @@ if [ $HOSTNAME = "andre-ribes-ubuntu" ]; then
     alias ssh-ld='ssh andre.ribes@lcdev08'
     alias ssh-pp='ssh andre.ribes@pptrd05'
     alias ssh-us='ssh andre.ribes@cwdev01'
+    alias ssh-hpc='ssh andre.ribes@bjhpc01'
 
     # Git And Ninja
     function get_git_branch_for_tibra_repo {
